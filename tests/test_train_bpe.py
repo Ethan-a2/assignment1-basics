@@ -22,6 +22,7 @@ def test_train_bpe_speed():
     )
     end_time = time.time()
     assert end_time - start_time < 1.5
+    # print(f"time using toy implementation: {end_time - start_time:.2f} seconds")
 
 
 def test_train_bpe():
@@ -38,7 +39,7 @@ def test_train_bpe():
 
     # Compare the learned merges to the expected output merges
     gpt2_byte_decoder = {v: k for k, v in gpt2_bytes_to_unicode().items()}
-    with open(reference_merges_path, encoding="utf-8") as f:
+    with open(reference_merges_path) as f:
         gpt2_reference_merges = [tuple(line.rstrip().split(" ")) for line in f]
         reference_merges = [
             (
@@ -50,7 +51,7 @@ def test_train_bpe():
     assert merges == reference_merges
 
     # Compare the vocab to the expected output vocab
-    with open(reference_vocab_path, encoding="utf-8") as f:
+    with open(reference_vocab_path) as f:
         gpt2_reference_vocab = json.load(f)
         reference_vocab = {
             gpt2_vocab_index: bytes([gpt2_byte_decoder[token] for token in gpt2_vocab_item])
@@ -67,6 +68,7 @@ def test_train_bpe_special_tokens(snapshot):
     Ensure that the special tokens are added to the vocabulary and not
     merged with other tokens.
     """
+    # return
     input_path = FIXTURES_PATH / "tinystories_sample_5M.txt"
     vocab, merges = run_train_bpe(
         input_path=input_path,

@@ -183,6 +183,8 @@ def test_ascii_string_matches_tiktoken():
     ids = tokenizer.encode(test_string)
     # assert ids == reference_ids
 
+    # print(ids)
+
     tokenized_string = [tokenizer.decode([x]) for x in ids]
     assert tokenized_string == ["Hello", ",", " how", " are", " you", "?"]
 
