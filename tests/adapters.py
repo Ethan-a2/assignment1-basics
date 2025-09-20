@@ -1,9 +1,8 @@
 from __future__ import annotations
 import math
 import os
-from typing import IO, Any, BinaryIO
 from collections.abc import Iterable
-from jaxtyping import Float, Int
+from typing import IO, Any, BinaryIO
 from einops import rearrange, reduce, einsum
 import einx
 
@@ -25,6 +24,7 @@ from cs336_basics.optimizer import MySGD, MyAdamW, lr_cosine_schedule,gradient_c
 
 import numpy.typing as npt
 import torch
+from jaxtyping import Bool, Float, Int
 from torch import Tensor
 
 
