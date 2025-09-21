@@ -52,3 +52,15 @@ def gpt2_bytes_to_unicode() -> dict[int, str]:
     characters = [chr(n) for n in cs]
     d = dict(zip(bs, characters))
     return d
+
+
+# Inverse map (unicode_char -> byte_value) for GPT-2's custom encoding
+# We need this to reconstruct original bytes from the vocabulary's unicode strings.
+_gpt2_unicode_to_bytes: dict[str, int] | None = None
+
+def get_gpt2_unicode_to_bytes() -> dict[str, int]:
+    global _gpt2_unicode_to_bytes
+    if _gpt2_unicode_to_bytes is None:
+        _gpt2_unicode_to_bytes = {v: k for k, v in gpt2_bytes_to_unicode().items()}
+    return _gpt2_unicode_to_bytes
+

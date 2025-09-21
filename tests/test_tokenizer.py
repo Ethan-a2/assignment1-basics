@@ -9,7 +9,9 @@ import psutil
 import pytest
 import tiktoken
 
-from .adapters import get_tokenizer
+# from .adapters import get_tokenizer
+from cs336_basics.a_tokenizer import get_tokenizer
+
 from .common import FIXTURES_PATH, gpt2_bytes_to_unicode
 
 VOCAB_PATH = FIXTURES_PATH / "gpt2_vocab.json"
@@ -183,7 +185,7 @@ def test_ascii_string_matches_tiktoken():
     ids = tokenizer.encode(test_string)
     # assert ids == reference_ids
 
-    # print(ids)
+    print(ids)
 
     tokenized_string = [tokenizer.decode([x]) for x in ids]
     assert tokenized_string == ["Hello", ",", " how", " are", " you", "?"]
