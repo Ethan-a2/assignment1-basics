@@ -9,8 +9,8 @@ import psutil
 import pytest
 import tiktoken
 
-# from .adapters import get_tokenizer
-from cs336_basics.a_tokenizer import get_tokenizer
+from .adapters import get_tokenizer
+# from cs336_basics.a_tokenizer import get_tokenizer
 
 from .common import FIXTURES_PATH, gpt2_bytes_to_unicode
 
