@@ -202,6 +202,17 @@ def ts_state_dict(request):
     return state_dict, config
 
 
+@pytest.fixture
+def ts_onnx_model(request):
+    from .common import FIXTURES_PATH
+    import onnxruntime as ort
+    
+    # Load the ONNX model
+    onnx_path = FIXTURES_PATH / "ts_tests" / "model.onnx"
+    session = ort.InferenceSession(str(onnx_path))
+    return session
+
+
 # Model parameters used for model fixture
 
 
